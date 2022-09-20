@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Meta tags-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="This repository contains the code for the length and weight unit converter" />
+  <meta color="color-scheme" content="dark light" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Title -->
+  <title>Unit converter</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/904e9ee361.js" crossorigin="anonymous"></script>
+
+  <!-- Page logo -->
+  <link rel="icon" href="./converter-icon.png" type="image/gif" />
+
+  <!-- JS -->
+  <script defer src="length-convert.js"></script>
+  <script defer src="weight-convert.js"></script>
+</head>
+
+<body>
+  <main class="main">
+    <h1 class="main__title">Unit converter</h1>
+    <div class="main__card">
+
+      <section class="main__section main__section-length">
+        <h2>Length conversion</h2>
+
+        <div class="main__input-labels">
+
+          <div class="main__wrapper">
+
+            <label for="length" class="main__label">Enter the length unit
+            </label>
+            <input type="number" name="length" id="length" class="main__input" min="0.0" />
+
+            <div class="main__unit-selection">
+              <select name="length-unit-to-br-converted" id="length-unit-to-be-converted"
+                class="main__select main__select-length" data-select-type="input">
+
+                <option value="Please select a value">---</option>
+
+                <option value="millimeters" data-unit="metric">Millimeters (mm)</option>
+                <option value="centimeters" data-unit="metric">Centimeters (cm)</option>
+                <option value="meters" data-unit="metric">Meters (m)</option>
+                <option value="kilometers" data-unit="metric">Kilometers (km)</option>
+                <option value="miles" data-unit="imperial">Miles (mi)</option>
+                <option value="inches" data-unit="imperial">Inches (in)</option>
+                <option value="feet" data-unit="imperial">Feet (ft)</option>
+                <option value="yards" data-unit="imperial">Yards (yd)</option>
+
+              </select>
+            </div>
+          </div>
+          <div class="main__wrapper">
+
+            <label for="length" class="main__label">Result
+            </label>
+            <input type="text" name="length" id="length" class="main__input main__input-length-result" disabled
+              min="0" />
+
+            <div class="main__unit-selection">
+              <select name="length-unit-to-convert" id="length-unit-to-convert" class="main__select main__select-length"
+                data-select-type="result">
+
+                <option value="Please select a value">---</option>
+
+                <option value="millimeters" data-unit="metric">Millimeters (mm)</option>
+                <option value="centimeters" data-unit="metric">Centimeters (cm)</option>
+                <option value="meters" data-unit="metric">Meters (m)</option>
+                <option value="kilometers" data-unit="metric">Kilometers (km)</option>
+                <option value="miles" data-unit="imperial">Miles (mi)</option>
+                <option value="inches" data-unit="imperial">Inches (in)</option>
+                <option value="feet" data-unit="imperial">Feet (ft)</option>
+                <option value="yards" data-unit="imperial">Yards (yd)</option>
+
+              </select>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+      <section class="main__section main__section-weight">
+        <h2>Weight conversion</h2>
+
+        <div class="main__input-labels">
+
+          <div class="main__wrapper">
+
+            <label for="weight" class="main__label">Enter the weight unit
+            </label>
+            <input type="number" name="weight" id="weight" class="main__input" min="0" />
+
+            <div class="main__unit-selection">
+              <select name="weight-unit-to-be-converted" id="weight-unit-to-be-converted"
+                class="main__select main__select-weight" data-select-type="input">
+                <option value="Please select a value">---</option>
+
+                <option value="kilograms" data-unit="metric">Kilograms (kg)</option>
+                <option value="grams" data-unit="metric">Grams (g)</option>
+                <option value="milligrams" data-unit="metric">Milligrams (mg)</option>
+                <option value="pounds" data-unit="imperial">Pounds (lbs)</option>
+                <option value="stone" data-unit="imperial">Stone (st)</option>
+                <option value="ounce" data-unit="imperial">Ounce (oz)</option>
+
+              </select>
+            </div>
+          </div>
+          <div class="main__wrapper">
+
+            <label for="weight" class="main__label">Result
+            </label>
+            <input type="text" name="weight" id="weight" class="main__input" disabled min="0" />
+
+            <div class="main__unit-selection">
+              <select name="weight-unit-to-convert" id="weight-unit-to-convert" class="main__select main__select-weight"
+                data-select-type="result">
+                <option value="Please select a value">---</option>
+
+                <option value="kilograms" data-unit="metric">Kilograms (kg)</option>
+                <option value="grams" data-unit="metric">Grams (g)</option>
+                <option value="milligrams" data-unit="metric">Milligrams (mg)</option>
+                <option value="pounds" data-unit="imperial">Pounds (lbs)</option>
+                <option value="stone" data-unit="imperial">Stone (st)</option>
+                <option value="ounce" data-unit="imperial">Ounce (oz)</option>
+
+              </select>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+
+
+
+    </div>
+  </main>
+
+</body>
+
+</html>

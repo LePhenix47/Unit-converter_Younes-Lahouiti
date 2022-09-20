@@ -1,0 +1,267 @@
+//SASS variables
+$body-bg-color-primary: #36d1dc;
+$body-bg-color-secondary: #5b86e5;
+$body-bg-color-primary--dark-theme: #244fab;
+$body-bg-color-secondary--dark-theme: #162b5b;
+
+$card-bg-color: #f1f1f1;
+$button-bg-color: #fabe33;
+$after-border-top-color: #747474;
+$text-color: black;
+
+$title-color: white;
+$wrapper-bg-color: white;
+$wrapper-border-color: grey;
+
+$input-bg-color: #ebe6e5;
+
+
+:root {
+    color-scheme: light;
+
+    --body-bg-color-primary: #{$body-bg-color-primary};
+    --body-bg-color-secondary: #{$body-bg-color-secondary};
+    --body-bg-color-primary--dark-theme: #{$body-bg-color-primary--dark-theme};
+    --body-bg-color-secondary--dark-theme: #{$body-bg-color-secondary--dark-theme};
+
+    --card-bg-color: #{$card-bg-color};
+    --button-bg-color: #{$button-bg-color};
+    --after-border-top-color: #{$after-border-top-color};
+    --text-color: #{$text-color};
+    --title-color: #{$title-color};
+
+    --input-bg-color: #{$input-bg-color};
+
+    --wrapper-bg-color: #{$wrapper-bg-color};
+    --wrapper-border-color: #{$wrapper-border-color};
+}
+
+//CSS variables
+
+
+//Dark theme
+@media (prefers-color-scheme: dark) {
+
+    //SASS variables
+    $card-bg-color: #0e0e0e;
+    $after-border-top-color: #c7c7c7;
+    $text-color: white;
+    $wrapper-bg-color: black;
+
+    $input-bg-color: #14191a;
+
+    //CSS variables
+    :root {
+        color-scheme: dark;
+
+        --card-bg-color: #{$card-bg-color};
+        --after-border-top-color: #{$after-border-top-color};
+        --text-color: #{$text-color};
+        --wrapper-bg-color: #{$wrapper-bg-color};
+
+        --input-bg-color: #{$input-bg-color};
+    }
+
+    body {
+        background-position: 100% 0;
+    }
+}
+
+
+//Maps 
+$breakpoints: (
+    mobile: 768px,
+    tablet: 992px,
+    laptop: 993px,
+    desktop: 1150px,
+);
+
+//Mixins
+
+@mixin mobile-only {
+    @media screen and (max-width: map-get($breakpoints, mobile)) {
+        @content;
+    }
+}
+
+@mixin tablet-only {
+    @media screen and (min-width: map-get($breakpoints, mobile)) and (max-width: map-get($breakpoints, tablet)) {
+        @content;
+    }
+}
+
+@mixin laptop-only {
+    @media screen and (min-width: map-get($breakpoints, laptop)) and (max-width: map-get($breakpoints, desktop)) {
+        @content;
+    }
+}
+
+@mixin desktop-only {
+    @media screen and (min-width: map-get($breakpoints, desktop)) {
+        @content;
+    }
+}
+
+@mixin center-flex($gap: 0px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: $gap;
+}
+
+@mixin center-flex-column($gap: 0px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $gap;
+}
+
+@mixin card-styling {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    width: 800px;
+    height: 620px;
+    border-radius: 5px;
+}
+
+//Normalization & typography
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    min-height: 100vh;
+    font-family: 'Lato', Helvetica, sans-serif;
+    background-image: linear-gradient(to right, var(--body-bg-color-primary), var(--body-bg-color-secondary),
+            var(--body-bg-color-primary--dark-theme),
+            var(--body-bg-color-secondary--dark-theme));
+    background-size: 350% 100%;
+    overflow-x: hidden;
+    transition: background-position 350ms ease-out;
+}
+
+button {
+    border: none;
+    background-color: var(--button-bg-color);
+    color: var(--text-color);
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+input {
+    border: none;
+
+    &:disabled {
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
+}
+
+select {
+    border: none;
+    appearance: none;
+}
+
+
+//SASS styling
+.main {
+    @include center-flex-column();
+
+    &__title {
+        color: var(--title-color);
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    &__card {
+        @include card-styling;
+        @include center-flex-column(50px);
+    }
+
+    &__section {
+        @include center-flex-column(20px);
+        width: 100%;
+    }
+
+    &__wrapper {
+        background-color: var(--wrapper-bg-color);
+        border-radius: 10px;
+        border: 2px solid var(--wrapper-border-color);
+    }
+
+    &__input-labels {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: inherit;
+        position: relative;
+
+        &::after {
+            content: "=";
+            font-size: 36px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+        }
+    }
+
+    &__label {
+        @include center-flex-column(5px);
+        padding: 15px;
+    }
+
+    &__input {
+        padding: 15px;
+        font-size: 14px;
+        background-color: var(--input-bg-color);
+        text-align: center;
+    }
+
+    &__unit-selection {
+        @include center-flex-column(5px);
+        width: 100%;
+        position: relative;
+
+        &::after {
+            content: "";
+            @include center-flex-column();
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid var(--after-border-top-color);
+            left: 80%;
+            top: 50%;
+            translate: 0 -50%;
+            position: absolute;
+            pointer-events: none;
+
+        }
+    }
+
+    &__select {
+        width: 100%;
+        height: 45px;
+        padding: 15px;
+        border-radius: 0 0 10px 10px;
+
+        &:focus {
+            background-color: var(--input-bg-color);
+
+        }
+
+        &>* {
+            padding: 15px;
+        }
+
+    }
+}
