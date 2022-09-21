@@ -121,8 +121,6 @@ $breakpoints: (
 @mixin card-styling {
     background-color: var(--card-bg-color);
     color: var(--text-color);
-    width: 800px;
-    height: 620px;
     border-radius: 5px;
 }
 
@@ -167,8 +165,15 @@ input {
     }
 }
 
+h2 {
+    margin-block: 20px;
+    text-align: center;
+}
+
 select {
     border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
 }
 
@@ -176,6 +181,7 @@ select {
 //SASS styling
 .main {
     @include center-flex-column();
+    margin-bottom: 50px;
 
     &__title {
         color: var(--title-color);
@@ -185,7 +191,9 @@ select {
 
     &__card {
         @include card-styling;
-        @include center-flex-column(50px);
+        @include center-flex-column(40px);
+        width: 80%;
+        height: 100%;
     }
 
     &__section {
@@ -197,6 +205,7 @@ select {
         background-color: var(--wrapper-bg-color);
         border-radius: 10px;
         border: 2px solid var(--wrapper-border-color);
+        margin-block: 20px;
     }
 
     &__input-labels {
@@ -205,6 +214,11 @@ select {
         align-items: center;
         width: inherit;
         position: relative;
+        margin-block: 15px;
+
+        @include mobile-only {
+            flex-direction: column;
+        }
 
         &::after {
             content: "=";
@@ -226,6 +240,7 @@ select {
         font-size: 14px;
         background-color: var(--input-bg-color);
         text-align: center;
+        width: 100%;
     }
 
     &__unit-selection {
