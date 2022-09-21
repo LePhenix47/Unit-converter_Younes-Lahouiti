@@ -1,68 +1,47 @@
-const lengthSelectCards = document.getElementsByClassName(
+const lengthSelectElements = document.getElementsByClassName(
   "main__select-length"
 ); //HTMLCollection
-for (card of lengthSelectCards) {
-  card.addEventListener("change", handleSelectionForLength);
+for (selectElement of lengthSelectElements) {
+  selectElement.addEventListener("change", handleSelectionForLength);
 }
 
-let conversionInputted = "";
-let conversionResultInput = "";
+let conversionInputtedLength = "";
+let conversionResultInputLength = "";
 
 function handleSelectionForLength(e) {
   if (this.getAttribute("data-select-type") === "input") {
     console.log("Input");
-    conversionInputted = this.value;
+    conversionInputtedLength = this.value;
   } else {
     console.log("Result");
-    conversionResultInput = this.value;
+    conversionResultInputLength = this.value;
   }
 
   console.table(e.target.value);
-  console.log({ conversionInputted }, { conversionResultInput });
+  console.log({ conversionInputtedLength }, { conversionResultInputLength });
 
   convertLengthValue(
     valueOfInputLength,
-    conversionInputted,
-    conversionResultInput
+    conversionInputtedLength,
+    conversionResultInputLength
   );
 }
 
-/*
-
-
-
-
-
-
-*/
-
 const lengthInput = document.querySelector(".main__input#length");
-const weightInput = document.querySelector(".main__input#weight");
-
-const lengthOptionsInput = document.querySelector(
-  "#length-unit-to-be-converted"
-);
-
-const lengthOptionsResult = document.querySelector("#length-unit-to-convert");
-
-const weightOptionsInput = document.querySelector(
-  "#weight-unit-to-be-converted"
-);
-
-const weightOptionsResult = document.querySelector("#weight-unit-to-convert");
 
 let valueOfInputLength = 0;
 let valueOfResultLength = 0;
 
 lengthInput.addEventListener("input", handleLengthConversion);
+
 function handleLengthConversion(e) {
   valueOfInputLength = e.target.valueAsNumber;
   console.log({ valueOfInputLength });
 
   convertLengthValue(
     valueOfInputLength,
-    conversionInputted,
-    conversionResultInput
+    conversionInputtedLength,
+    conversionResultInputLength
   );
 }
 
@@ -100,7 +79,7 @@ function convertLengthValue(value, unitOfValue, unitToBeConvertedTo) {
 
   if (bothUnitsAreMetric) {
     console.log("Both units are in metric: Metric → Metric");
-    valueOfResultLength = convertMetricToMetricUnits(
+    valueOfResultLength = convertMetricUnitLengths(
       value,
       unitOfValue,
       unitToBeConvertedTo
@@ -109,7 +88,7 @@ function convertLengthValue(value, unitOfValue, unitToBeConvertedTo) {
     console.log(
       "Left unit is metric and right unit is imperial: Metric → Imperial"
     );
-    valueOfResultLength = convertMetricToImperialUnits(
+    valueOfResultLength = convertMetricToImperialUnitLengths(
       value,
       unitOfValue,
       unitToBeConvertedTo
@@ -117,13 +96,13 @@ function convertLengthValue(value, unitOfValue, unitToBeConvertedTo) {
 
     console.log({ valueOfResultLength });
   } else if (imperialToMetric) {
-    valueOfResultLength = convertImperialToMetricUnits(
+    valueOfResultLength = convertImperialToMetricUnitLengths(
       value,
       unitOfValue,
       unitToBeConvertedTo
     );
   } else if (bothUnitsAreImperial) {
-    valueOfResultLength = convertImperialToImperialUnits(
+    valueOfResultLength = convertImperialUnitLengths(
       value,
       unitOfValue,
       unitToBeConvertedTo
@@ -138,12 +117,19 @@ function convertLengthValue(value, unitOfValue, unitToBeConvertedTo) {
     unitToBeConvertedTo
   );
 
+  resultLengthInputElement.removeAttribute("disabled");
+
+  if (typeof valueOfResultLength === "number") {
+    Number(valueOfResultLength).toFixed(2);
+    console.log(valueOfResultLength, "is a", typeof valueOfResultLength);
+  }
+
   resultLengthInputElement.value = valueOfResultLength;
 
   console.log({ valueOfResultLength });
 }
 
-function convertMetricToMetricUnits(value, unitOfValue, unitToBeConvertedTo) {
+function convertMetricUnitLengths(value, unitOfValue, unitToBeConvertedTo) {
   if (unitOfValue === unitToBeConvertedTo) {
     return value;
   }
@@ -193,7 +179,11 @@ function convertMetricToMetricUnits(value, unitOfValue, unitToBeConvertedTo) {
 }
 
 //m → yd, mi, inch, ft..
-function convertMetricToImperialUnits(value, unitOfValue, unitToBeConvertedTo) {
+function convertMetricToImperialUnitLengths(
+  value,
+  unitOfValue,
+  unitToBeConvertedTo
+) {
   if (unitOfValue === unitToBeConvertedTo) {
     return value;
   }
@@ -242,13 +232,13 @@ function convertMetricToImperialUnits(value, unitOfValue, unitToBeConvertedTo) {
     }
   }
 
-  console.log("convertMetricToImperialUnits", value);
+  console.log("convertMetricToImperialUnitLengths", value);
 
   return value;
 }
 
 //yd, ft,
-function convertImperialToMetricUnits(
+function convertImperialToMetricUnitLengths(
   valueToReturn,
   unitOfValue,
   unitToBeConvertedTo
@@ -304,11 +294,7 @@ function convertImperialToMetricUnits(
   return valueToReturn;
 }
 
-function convertImperialToImperialUnits(
-  value,
-  unitOfValue,
-  unitToBeConvertedTo
-) {
+function convertImperialUnitLengths(value, unitOfValue, unitToBeConvertedTo) {
   if (unitOfValue === unitToBeConvertedTo) {
     return value;
   }
@@ -381,4 +367,16 @@ function convertImperialToImperialUnits(
   }
 
   return value;
+}
+
+resultLengthInputElement.addEventListener("click", copyToClipboard);
+
+function copyToClipboard(e) {
+  this.select();
+
+  this.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(this.value);
+
+  alert(`Copied ${this.value} to clipboard`);
 }
