@@ -7,7 +7,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="description" content="This repository contains the code for the length and weight unit converter" />
+  <meta name="description"
+    content="This repository contains the code for the length, weight AND temperature unit converter" />
   <meta color="color-scheme" content="dark light" />
   <meta name="robots" content="index, follow" />
 
@@ -33,6 +34,7 @@
   <!-- JS -->
   <script defer src="./js/length-convert.js"></script>
   <script defer src="./js/weight-convert.js"></script>
+  <script defer src="./js/temperature-convert.js"></script>
 </head>
 
 <body>
@@ -41,13 +43,13 @@
     <div class="main__card">
 
       <section class="main__section main__section-length">
-        <h2>Length conversion</h2>
+        <h2>Length conversion 📏</h2>
 
         <div class="main__input-labels">
 
           <div class="main__wrapper">
 
-            <label for="length" class="main__label">Enter the length unit
+            <label for="length" class="main__label">Enter the length
             </label>
             <input type="number" name="length" id="length" class="main__input" min="0.0" />
 
@@ -57,14 +59,14 @@
 
                 <option value="Please select a value">---</option>
 
-                <option value="millimeters" data-unit="metric">Millimeters (mm)</option>
-                <option value="centimeters" data-unit="metric">Centimeters (cm)</option>
-                <option value="meters" data-unit="metric">Meters (m)</option>
-                <option value="kilometers" data-unit="metric">Kilometers (km)</option>
-                <option value="miles" data-unit="imperial">Miles (mi)</option>
-                <option value="inches" data-unit="imperial">Inches (in)</option>
-                <option value="feet" data-unit="imperial">Feet (ft)</option>
-                <option value="yards" data-unit="imperial">Yards (yd)</option>
+                <option value="millimeters">Millimeters (mm)</option>
+                <option value="centimeters">Centimeters (cm)</option>
+                <option value="meters">Meters (m)</option>
+                <option value="kilometers">Kilometers (km)</option>
+                <option value="miles">Miles (mi)</option>
+                <option value="inches">Inches (in)</option>
+                <option value="feet">Feet (ft)</option>
+                <option value="yards">Yards (yd)</option>
 
               </select>
             </div>
@@ -82,14 +84,14 @@
 
                 <option value="Please select a value">---</option>
 
-                <option value="millimeters" data-unit="metric">Millimeters (mm)</option>
-                <option value="centimeters" data-unit="metric">Centimeters (cm)</option>
-                <option value="meters" data-unit="metric">Meters (m)</option>
-                <option value="kilometers" data-unit="metric">Kilometers (km)</option>
-                <option value="miles" data-unit="imperial">Miles (mi)</option>
-                <option value="inches" data-unit="imperial">Inches (in)</option>
-                <option value="feet" data-unit="imperial">Feet (ft)</option>
-                <option value="yards" data-unit="imperial">Yards (yd)</option>
+                <option value="millimeters">Millimeters (mm)</option>
+                <option value="centimeters">Centimeters (cm)</option>
+                <option value="meters">Meters (m)</option>
+                <option value="kilometers">Kilometers (km)</option>
+                <option value="miles">Miles (mi)</option>
+                <option value="inches">Inches (in)</option>
+                <option value="feet">Feet (ft)</option>
+                <option value="yards">Yards (yd)</option>
 
               </select>
             </div>
@@ -100,13 +102,13 @@
       </section>
 
       <section class="main__section main__section-weight">
-        <h2>Weight conversion</h2>
+        <h2>Weight conversion ⚖</h2>
 
         <div class="main__input-labels">
 
           <div class="main__wrapper">
 
-            <label for="weight" class="main__label">Enter the weight unit
+            <label for="weight" class="main__label">Enter the weight
             </label>
             <input type="number" name="weight" id="weight" class="main__input" min="0" />
 
@@ -115,12 +117,12 @@
                 class="main__select main__select-weight" data-select-type="input">
                 <option value="Please select a value">---</option>
 
-                <option value="kilograms" data-unit="metric">Kilograms (kg)</option>
-                <option value="grams" data-unit="metric">Grams (g)</option>
-                <option value="milligrams" data-unit="metric">Milligrams (mg)</option>
-                <option value="pounds" data-unit="imperial">Pounds (lbs)</option>
-                <option value="stone" data-unit="imperial">Stone (st)</option>
-                <option value="ounce" data-unit="imperial">Ounce (oz)</option>
+                <option value="kilograms">Kilograms (kg)</option>
+                <option value="grams">Grams (g)</option>
+                <option value="milligrams">Milligrams (mg)</option>
+                <option value="pounds">Pounds (lbs)</option>
+                <option value="stone">Stone (st)</option>
+                <option value="ounce">Ounce (oz)</option>
 
               </select>
             </div>
@@ -129,19 +131,67 @@
 
             <label for="weight" class="main__label">Result
             </label>
-            <input type="text" name="weight" id="weight" class="main__input" disabled min="0" />
+            <input type="text" name="weight" id="weight" class="main__input main__input-weight-result" disabled
+              min="0" />
 
             <div class="main__unit-selection">
               <select name="weight-unit-to-convert" id="weight-unit-to-convert" class="main__select main__select-weight"
                 data-select-type="result">
                 <option value="Please select a value">---</option>
 
-                <option value="kilograms" data-unit="metric">Kilograms (kg)</option>
-                <option value="grams" data-unit="metric">Grams (g)</option>
-                <option value="milligrams" data-unit="metric">Milligrams (mg)</option>
-                <option value="pounds" data-unit="imperial">Pounds (lbs)</option>
-                <option value="stone" data-unit="imperial">Stone (st)</option>
-                <option value="ounce" data-unit="imperial">Ounce (oz)</option>
+                <option value="kilograms">Kilograms (kg)</option>
+                <option value="grams">Grams (g)</option>
+                <option value="milligrams">Milligrams (mg)</option>
+                <option value="pounds">Pounds (lbs)</option>
+                <option value="stone">Stone (st)</option>
+                <option value="ounces">Ounce (oz)</option>
+
+              </select>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+      <section class="main__section main__section-temperature">
+        <h2>Temperature conversion 🌡</h2>
+
+        <div class="main__input-labels">
+
+          <div class="main__wrapper">
+
+            <label for="temperature" class="main__label">Enter the temperature
+            </label>
+            <input type="number" name="temperature" id="temperature" class="main__input" />
+
+            <div class="main__unit-selection">
+              <select name="temperature-unit-to-be-converted" id="temperature-unit-to-be-converted"
+                class="main__select main__select-temperature" data-select-type="input">
+                <option value="Please select a value">---</option>
+
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (°K)</option>
+
+              </select>
+            </div>
+          </div>
+          <div class="main__wrapper">
+
+            <label for="temperature" class="main__label">Result
+            </label>
+            <input type="text" name="temperature" id="temperature" class="main__input main__input-temperature-result"
+              disabled />
+
+            <div class="main__unit-selection">
+              <select name="temperature-unit-to-convert" id="temperature-unit-to-convert"
+                class="main__select main__select-temperature" data-select-type="result">
+                <option value="Please select a value">---</option>
+
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (°K)</option>
 
               </select>
             </div>
