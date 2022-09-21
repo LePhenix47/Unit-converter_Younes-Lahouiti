@@ -206,6 +206,11 @@ select {
         border-radius: 10px;
         border: 2px solid var(--wrapper-border-color);
         margin-block: 20px;
+        width: 35%;
+
+        @include mobile-only {
+            width: 65%;
+        }
     }
 
     &__input-labels {
@@ -237,10 +242,11 @@ select {
 
     &__input {
         padding: 15px;
-        font-size: 14px;
+        font-size: 16px;
         background-color: var(--input-bg-color);
         text-align: center;
         width: 100%;
+
     }
 
     &__unit-selection {
