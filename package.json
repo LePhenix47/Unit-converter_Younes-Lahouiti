@@ -1,13 +1,13 @@
 {
-  "name": "1.-imc",
+  "name": "1.-unit_convert",
   "version": "1.0.0",
-  "description": "",
+  "description": "This repository contains the script for the SASS unit converter",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "sass --watch ./sass/style.scss:./css/style.css --style compressed"
   },
   "keywords": [],
-  "author": "",
+  "author": "Younes Lahouiti",
   "license": "ISC"
 }
