@@ -73,68 +73,74 @@ function convertTemperatureValue(value, unitOfValue, unitToBeConvertedTo) {
   );
   resultTemperatureInputElement.getAttribute("disabled", "false");
 
-  resultTemperatureInputElement.value = valueOfResultTemperature.value;
+  let { valueOfTemperature, kelvinTemperatureIsNegative } =
+    valueOfResultTemperature;
+
+  valueOfTemperature = valueOfTemperature.toFixed(2);
+
+  if (kelvinTemperatureIsNegative) {
+    valueOfTemperature = valueOfTemperature.toString() + "*";
+  }
+  resultTemperatureInputElement.value = valueOfTemperature;
 }
 
-function convertTemperatures(value, unitOfValue, unitToBeConvertedTo) {
+function convertTemperatures(
+  valueOfTemperature,
+  unitOfValue,
+  unitToBeConvertedTo
+) {
   let celsius = 0;
   let fahrenheit = 0;
   let kelvin = 0;
 
-  let kelvinTemperatureNotNegative = false;
+  let kelvinTemperatureIsNegative = false;
+
   switch (unitOfValue) {
     case "celsius": {
-      celsius = value;
-      fahrenheit = (celsius * 9) / 5 + 32; //1°F = (1°C * 9/5) + 32 = 33.8 °C
-      kelvin =
-        273.15 + celsius > 0
-          ? 273.15 + celsius
-          : (273.15 + celsius).toFixed(2) + "*"; //1°K = 1°C + 273.15, also Kelvin values are NEVER negative
+      celsius = valueOfTemperature;
+      fahrenheit = (celsius * 9) / 5 + 32; //x°F = (x°C * 9/5) + 32
+      kelvin = 273.15 + celsius; //x°K = x°C + 273.15, also Kelvin values are NEVER negative
+
       break;
     }
     case "fahrenheit": {
-      fahrenheit = value;
-      celsius = ((fahrenheit - 32) * 5) / 9; //1°C = (1°F - 32) * 5/9 = -17.22222[...] °F
-      kelvin =
-        -17.22222 * fahrenheit + fahrenheit > 0
-          ? -17.22222 * fahrenheit + fahrenheit
-          : (-17.22222 * fahrenheit + fahrenheit).toFixed(2) + "*"; //1°K = (1°F - 32) * 5/9 + 273.15 = -17.22222[...] + 273.15 = 255.9278°K
+      fahrenheit = valueOfTemperature;
+      celsius = ((fahrenheit - 32) * 5) / 9; //x°C = (x°F - 32) * 5/9
+      kelvin = -17.22222 * fahrenheit + fahrenheit; //x°K = (x°F - 32) * 5/9 + 273.15
+
       break;
     }
     case "kelvin": {
-      //0°K = -273.15°C or 0°K = (1°F - 32) * 5/9 - 273.15 = -459.67°F
-      kelvin = value;
-      kelvin < 0
-        ? kelvinTemperatureNotNegative === false
-        : kelvinTemperatureNotNegative === true;
+      //x°K = x°C  -273.15 or x°K = (x°F - 32) * 5/9 - 273.15
+      kelvin = valueOfTemperature;
       celsius = kelvin - 273.15;
       fahrenheit = kelvin - 459.67;
-      console.log(this);
+
       break;
     }
   }
+
+  kelvinTemperatureIsNegative =
+    kelvin < 0
+      ? kelvinTemperatureIsNegative === false
+      : kelvinTemperatureIsNegative === true;
 
   switch (unitToBeConvertedTo) {
     case "celsius": {
-      value = celsius;
+      valueOfTemperature = celsius;
       break;
     }
     case "fahrenheit": {
-      value = fahrenheit;
+      valueOfTemperature = fahrenheit;
       break;
     }
     case "kelvin": {
-      value = kelvin;
+      valueOfTemperature = kelvin;
       break;
     }
   }
 
-  if (typeof value === "number") {
-    Number(value).toFixed(2);
-    console.log(value, "is a", typeof value);
-  }
-
-  return { value, kelvinTemperatureNotNegative };
+  return { valueOfTemperature, kelvinTemperatureIsNegative };
 }
 
 resultTemperatureInputElement.addEventListener("click", copyToClipboard);

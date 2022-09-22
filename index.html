@@ -38,11 +38,11 @@
 </head>
 
 <body>
-  <main class="main">
+  <main class="main" role="main">
     <h1 class="main__title">Unit converter</h1>
     <div class="main__card">
 
-      <section class="main__section main__section-length">
+      <section role="region" aria-label="Length converter" class="main__section main__section-length">
         <h2>Length conversion 📏</h2>
 
         <div class="main__input-labels">
@@ -51,10 +51,10 @@
 
             <label for="length" class="main__label">Enter the length
             </label>
-            <input type="number" name="length" id="length" class="main__input" min="0.0" />
+            <input type="number" name="length" id="length" class="main__input" min="0.0" value="0" />
 
             <div class="main__unit-selection">
-              <select name="length-unit-to-br-converted" id="length-unit-to-be-converted"
+              <select aria-label="length-options" name="length-unit-to-be-converted" id="length-unit-to-be-converted"
                 class="main__select main__select-length" data-select-type="input">
 
                 <option value="Please select a value">---</option>
@@ -79,8 +79,8 @@
               min="0" />
 
             <div class="main__unit-selection">
-              <select name="length-unit-to-convert" id="length-unit-to-convert" class="main__select main__select-length"
-                data-select-type="result">
+              <select aria-label="length-options" name="length-unit-to-convert" id="length-unit-to-convert"
+                class="main__select main__select-length" data-select-type="result">
 
                 <option value="Please select a value">---</option>
 
@@ -101,7 +101,7 @@
         </div>
       </section>
 
-      <section class="main__section main__section-weight">
+      <section role="region" aria-label="weight converter" class="main__section main__section-weight">
         <h2>Weight conversion ⚖</h2>
 
         <div class="main__input-labels">
@@ -110,10 +110,10 @@
 
             <label for="weight" class="main__label">Enter the weight
             </label>
-            <input type="number" name="weight" id="weight" class="main__input" min="0" />
+            <input type="number" name="weight" id="weight" class="main__input" min="0" value="0" />
 
             <div class="main__unit-selection">
-              <select name="weight-unit-to-be-converted" id="weight-unit-to-be-converted"
+              <select aria-label="weight-options" name="weight-unit-to-be-converted" id="weight-unit-to-be-converted"
                 class="main__select main__select-weight" data-select-type="input">
                 <option value="Please select a value">---</option>
 
@@ -135,8 +135,8 @@
               min="0" />
 
             <div class="main__unit-selection">
-              <select name="weight-unit-to-convert" id="weight-unit-to-convert" class="main__select main__select-weight"
-                data-select-type="result">
+              <select aria-label="weight-options" name="weight-unit-to-convert" id="weight-unit-to-convert"
+                class="main__select main__select-weight" data-select-type="result">
                 <option value="Please select a value">---</option>
 
                 <option value="kilograms">Kilograms (kg)</option>
@@ -154,7 +154,8 @@
         </div>
       </section>
 
-      <section class="main__section main__section-temperature">
+      <section role="region" aria-label="temperature converter" class="main__section main__section-temperature">
+
         <h2>Temperature conversion 🌡</h2>
 
         <div class="main__input-labels">
@@ -163,11 +164,12 @@
 
             <label for="temperature" class="main__label">Enter the temperature
             </label>
-            <input type="number" name="temperature" id="temperature" class="main__input" />
+            <input type="number" name="temperature" id="temperature" class="main__input" value="0" />
 
             <div class="main__unit-selection">
-              <select name="temperature-unit-to-be-converted" id="temperature-unit-to-be-converted"
-                class="main__select main__select-temperature" data-select-type="input">
+              <select aria-label="temperature-options" name="temperature-unit-to-be-converted"
+                id="temperature-unit-to-be-converted" class="main__select main__select-temperature"
+                data-select-type="input">
                 <option value="Please select a value">---</option>
 
                 <option value="celsius">Celsius (°C)</option>
@@ -185,8 +187,9 @@
               disabled />
 
             <div class="main__unit-selection">
-              <select name="temperature-unit-to-convert" id="temperature-unit-to-convert"
-                class="main__select main__select-temperature" data-select-type="result">
+              <select aria-label="temperature-options" name="temperature-unit-to-convert"
+                id="temperature-unit-to-convert" class="main__select main__select-temperature"
+                data-select-type="result">
                 <option value="Please select a value">---</option>
 
                 <option value="celsius">Celsius (°C)</option>
